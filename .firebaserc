@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tutorialfirebase-588fb": {
+      "hosting": {
+        "angularFire": [
+          "tutorialfirebase-588fb"
+        ]
+      }
+    }
+  }
+}

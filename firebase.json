@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "angularFire",
+      "public": "dist/angularFire",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
