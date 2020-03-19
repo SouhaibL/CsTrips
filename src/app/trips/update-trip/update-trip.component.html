@@ -1,10 +1,13 @@
 <div class="create-page">
 
+  <form [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+
+
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item active" aria-current="page">Create Trip</li>
       <li class="breadcrumb-item" aria-current="page">
-        <mat-slide-toggle>Active</mat-slide-toggle>
+        <mat-slide-toggle formControlName="active" >Active</mat-slide-toggle>
       </li>
     </ol>
   </nav>
@@ -13,7 +16,7 @@
     <div class="row">
 
       <div class="col col-md-12">
-        <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+        <div class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
 
           <div class="row">
             <div class="col col-md-9">
@@ -44,29 +47,22 @@
 
           </div>
 
-
-          <app-cs-users></app-cs-users>
-          
-          <div class="form-group">
-            <mat-form-field class="input-style">
-              <mat-label>Leave a comment</mat-label>
-              <textarea cdkTextareaAutosize cdkAutosizeMinRows="20" cdkAutosizeMaxRows="20" class="form-control"
-                matInput placeholder="Ex. It makes me feel..."></textarea>
-            </mat-form-field>
+          <div style="margin-bottom: 15px">
+              <ckeditor formControlName="description" [config]="editorConfig" [editor]="Editor" data="Test"></ckeditor>
           </div>
-
-
-
+          
+          <app-cs-users [idtrip]="item.id"></app-cs-users>
           <div class="row submit-button-container">
             <div class="col-md-4">
-              <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Create</button>
+              <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Update</button>
             </div>
           </div>
 
 
-        </form>
+        </div>
       </div>
 
     </div>
   </div>
+  </form>
 </div>

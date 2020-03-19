@@ -1,0 +1,46 @@
+
+<div class="d-flex">
+    <button (click)="openDialog()" mat-raised-button class="submit-button" color="basic" type="button">
+      <img height="30" style="float:left" src="assets/imgs/cs.png"> 
+      Add Cs Users</button>
+  </div>
+  
+<div class="row" *ngIf="csUsers.length > 0 ">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th>Avatar</th>
+          <th>Name</th>
+          <th>Place</th>
+          <th>Age</th>
+          <th>Contact</th>
+          <th class="text-center">Link</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let csUser of csUsers; let i = index">
+          <td class="text-center">1</td>
+          <td><img [src]="csUser.avatarUrl"></td>
+          <td>{{csUser.publicName}}</td>
+          <td>{{csUser.publicAddress}}</td>
+          <td>{{csUser.publicAge}}</td>
+          <td>
+          <mat-slide-toggle (change)="updateContact(i)" class="float-right" [(ngModel)]="csUser.contact">Active</mat-slide-toggle>
+          </td>
+          <td class="text-center">
+            <a [href]="'https://couchsurfing.com/users/'+csUser.id">
+              <ion-icon name="list"></ion-icon>
+            </a></td>
+          <td class="td-actions text-right">
+            <button type="button" rel="tooltip" (click)="delete(csUser.id, i)" class="btn btn-danger btn-sm btn-icon">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

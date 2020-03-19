@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-4 offset-md-1">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}"
+        placeholder="Search by title..." (keyup)="searchByTitle()">
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <ion-icon class="icon" name="search"></ion-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="list-group users-list">
+  <div class="row">
+    
+    <div *ngFor="let trip of trips" class="col-md-4 mt-4">
+      <app-trip-detail [trip]="trip"></app-trip-detail>
+    </div>
+  </div>
+</div>

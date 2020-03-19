@@ -1,0 +1,27 @@
+
+
+    <div class="card bg-light w-40">
+        <div class="card-header bg-light">
+            <div class="row">
+                <div class="col-md-6">{{trip.payload.doc.data().date.toDate() | date:'yyyy/MM/dd'}}
+                </div>
+                <div class="col-md-6">
+                    <mat-slide-toggle (change)="updateState()" class="float-right" [(ngModel)]="activeToggle">Active</mat-slide-toggle>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{trip.payload.doc.data().title}}</h5>
+          </div>
+        <div class="card-footer bg-transparent">
+            <div class="row">
+                <div class="col col-md-6">
+                    <button (click)="modifyTrip()" mat-raised-button class="float-left submit-button w-100" color="primary" type="submit">Modify</button>
+                </div>
+
+                <div class="col col-md-6">
+                    <button (click)="deleteTrip()" mat-raised-button class="float-right submit-button w-100" color="accent" type="submit">Delete</button>
+                </div>
+            </div>
+        </div>
+ </div>

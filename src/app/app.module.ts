@@ -6,12 +6,8 @@ import { RouterModule } from '@angular/router';
 import { rootRouterConfig } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { AvatarDialogComponent } from './avatar-dialog/avatar-dialog.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { EditUserResolver } from './edit-user/edit-user.resolver';
-import { NewUserComponent } from './new-user/new-user.component';
-import { NewTripComponent } from './new-trip/new-trip.component';
-import { HomeComponent } from './home/home.component';
+import { NewTripComponent } from './trips/new-trip/new-trip.component';
+
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -26,20 +22,27 @@ import { MatInputModule } from  '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule  } from '@angular/material/core';
-import { CsUsersComponent } from './new-trip/cs-users/cs-users.component';
+import { CsUsersComponent } from './trips/new-trip/cs-users/cs-users.component';
+import { TripsComponent } from './trips/trips.component';
+import { TripDetailComponent } from './trips/trip-detail/trip-detail.component';
+import { MatCardModule } from '@angular/material/card';
+import { UpdateTripComponent } from './trips/update-trip/update-trip.component';
+import { UpdateTripResolver } from './trips/update-trip/update-trip-resolver';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CsDialogComponent } from './trips/new-trip/cs-users/cs-dialog/cs-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AvatarDialogComponent,
-    EditUserComponent,  
-    NewUserComponent,
-    HomeComponent,
     NewTripComponent,
-    CsUsersComponent
+    CsUsersComponent,
+    TripsComponent,
+    TripDetailComponent,
+    UpdateTripComponent,
+    CsDialogComponent,
   ],
-  entryComponents: [AvatarDialogComponent],
+  entryComponents: [CsDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -54,9 +57,11 @@ import { CsUsersComponent } from './new-trip/cs-users/cs-users.component';
     MatDialogModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule,
+    CKEditorModule
   ],
-  providers: [FirebaseService, EditUserResolver],
+  providers: [FirebaseService, UpdateTripResolver],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

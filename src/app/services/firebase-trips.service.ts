@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Trip } from '../trips/models/trip.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,43 +12,37 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class FireBaseTripsService {
 
   constructor(public db: AngularFirestore) { }
+  
 
   getTrip(tripKey) {
     return this.db.collection('trips').doc(tripKey).snapshotChanges();
   }
 
   updateTrip(tripKey, value) {
-    value.nameToSearch = value.name.toLowerCase();
     return this.db.collection('trips').doc(tripKey).set(value);
   }
 
   deleteTrip(tripKey) {
+    this.db.collection('trips_enrolments').doc(tripKey).delete()
     return this.db.collection('trips').doc(tripKey).delete();
   }
 
   getTrips() {
-    //return this.db.collection('/avatar').valueChanges()
     return this.db.collection('trips').snapshotChanges();
   }
 
   searchTrips(searchValue) {
-    return this.db.collection('Trips', ref => ref.where('nameToSearch', '>=', searchValue)
-      .where('nameToSearch', '<=', searchValue + '\uf8ff'))
+    return this.db.collection('trips', ref => ref.where('title', '>=', searchValue)
+      .where('title', '<=', searchValue + '\uf8ff'))
       .snapshotChanges()
   }
 
-  searchTripsByAge(value) {
-    return this.db.collection('Trips', ref => ref.orderBy('age').startAt(value)).snapshotChanges();
+  createTrip(value: Trip) {
+    return this.db.collection('trips').add(value);
   }
 
-
-  createTrip(value, avatar) {
-    return this.db.collection('Trips').add({
-      name: value.name,
-      nameToSearch: value.name.toLowerCase(),
-      surname: value.surname,
-      age: parseInt(value.age),
-      avatar: avatar
-    });
+  updateTripState(tripKey, value) {
+    return this.db.collection('trips').doc(tripKey).set({ active: value }, { merge: true });
   }
+
 }
